@@ -9,3 +9,104 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+enum Mode {
+  DARK
+  LIGHT
+}
+
+enum Currency {
+  CZK
+  PLN
+  GBP
+  USD
+  EUR
+  AUD
+  CHF
+  JPY
+  NZD
+  CAD
+  BTC
+}
+
+model Countries {
+  id     String   @id @default(uuid())
+  name   String
+  Assets Assets[]
+}
+
+enum Market {
+  FOREX
+  STOCKS
+  COMMODITIES
+  CRYPTO
+  INDICES
+}
+
+model Account {
+  id        String      @id @default(cuid())
+  userId    String
+  mode      Mode
+  currency  Currency
+  money     BigInt
+  default   Boolean
+  user      User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Positions Positions[]
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+}
+
+model Positions {
+  id           String       @id @default(cuid())
+  openPrice    Decimal
+  closePrice   Decimal
+  openTime     DateTime     @db.Timestamptz
+  closeTime    DateTime     @db.Timestamptz
+  positionSize Decimal
+  accountId    String
+  assetId      String
+  fee          Float        @default(0)
+  positionType PositionType
+  userAccount  Account      @relation(fields: [accountId], references: [id], onDelete: Cascade)
+  asset        Assets       @relation(fields: [assetId], references: [id], onDelete: Cascade)
+}
+
+enum PositionType {
+  LONG
+  SHORT
+}
+
+model Assets {
+  id        String      @id @default(cuid())
+  name      String
+  ticker    String      @unique
+  image     String
+  marketId  String
+  market    Markets     @relation(fields: [marketId], references: [id], onDelete: Cascade)
+  countryId String?
+  country   Countries?  @relation(fields: [countryId], references: [id], onDelete: Cascade)
+  pipFactor Int
+  positions Positions[]
+}
+
+model Markets {
+  id     String   @id @default(cuid())
+  name   Market
+  Assets Assets[]
+}

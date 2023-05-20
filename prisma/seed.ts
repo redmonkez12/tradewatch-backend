@@ -1,6 +1,10 @@
 import { db } from "../lib/db";
+import { countriesSeed } from "./seedData/countries";
 
 async function main() {
+  await db.countries.deleteMany();
+
+  await countriesSeed();
 }
 
 main()
