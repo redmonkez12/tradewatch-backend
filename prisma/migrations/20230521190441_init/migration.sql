@@ -72,7 +72,6 @@ CREATE TABLE "Assets" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "ticker" TEXT NOT NULL,
-    "image" TEXT NOT NULL,
     "marketId" TEXT NOT NULL,
     "countryId" TEXT,
     "pipFactor" INTEGER NOT NULL,
