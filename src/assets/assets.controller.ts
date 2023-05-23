@@ -4,9 +4,7 @@ import { AssetsService } from "./assets.service";
 
 @Controller("/api/v1/assets")
 export class AssetsController {
-    constructor(private readonly assetService: AssetsService) {
-
-    }
+    constructor(private readonly assetService: AssetsService) {}
 
     @Get("/forex")
     getForex() {
@@ -14,7 +12,5 @@ export class AssetsController {
     }
 
     @Get("/stocks")
-    getStocks() {
-        
-    }
+    getStocks() {}
 }

@@ -6,7 +6,7 @@ import { PrismaService } from "src/common/PrismaService";
 @Injectable()
 export class MarketsService {
     constructor(private prismaService: PrismaService) {}
-    
+
     public getByName(name: Market) {
         return this.prismaService.markets.findFirstOrThrow({
             where: {

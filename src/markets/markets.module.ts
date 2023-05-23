@@ -9,6 +9,4 @@ import { CommonModule } from "src/common/common.module";
     controllers: [MarketsController],
     providers: [MarketsService],
 })
-export class MarketsModule {
-
-}
+export class MarketsModule {}

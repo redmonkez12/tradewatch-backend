@@ -1,5 +1,6 @@
 import { createId } from "@paralleldrive/cuid2";
 import { Market } from "@prisma/client";
+
 import { db } from "lib/db";
 
 const currencies = [
@@ -73,9 +74,8 @@ const currencies = [
     },
 ];
 
-
 export async function forexSeed() {
-    const forex = await db.markets.findFirstOrThrow({
+    const { id } = await db.markets.findFirstOrThrow({
         where: {
             name: Market.FOREX,
         },
@@ -84,11 +84,11 @@ export async function forexSeed() {
     for (const currency of currencies) {
         await db.assets.create({
             data: {
-              id: createId(),
-              name: currency.name,
-              ticker: currency.ticker,
-              marketId: forex.id,
-              pipFactor: 10000,
+                id: createId(),
+                name: currency.name,
+                ticker: currency.ticker,
+                marketId: id,
+                pipFactor: 10000,
             },
         });
     }

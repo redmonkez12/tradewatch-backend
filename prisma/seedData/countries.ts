@@ -27,8 +27,8 @@ export async function countriesSeed() {
     for (const country of countries) {
         await db.countries.create({
             data: {
-              id: createId(),
-              name: country,
+                id: createId(),
+                name: country,
             },
         });
     }

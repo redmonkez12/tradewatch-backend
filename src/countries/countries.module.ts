@@ -9,6 +9,4 @@ import { CommonModule } from "src/common/common.module";
     controllers: [CountriesController],
     providers: [CountriesService],
 })
-export class CountriesModule {
-
-}
+export class CountriesModule {}

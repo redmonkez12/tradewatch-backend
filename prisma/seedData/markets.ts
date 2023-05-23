@@ -1,5 +1,6 @@
 import { createId } from "@paralleldrive/cuid2";
 import { Market } from "@prisma/client";
+
 import { db } from "lib/db";
 
 const markets = [
@@ -14,8 +15,8 @@ export async function marketsSeed() {
     for (const market of markets) {
         await db.markets.create({
             data: {
-              id: createId(),
-              name: market,
+                id: createId(),
+                name: market,
             },
         });
     }

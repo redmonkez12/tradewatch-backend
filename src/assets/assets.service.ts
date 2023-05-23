@@ -6,7 +6,7 @@ import { PrismaService } from "src/common/PrismaService";
 @Injectable()
 export class AssetsService {
     constructor(private prismaService: PrismaService) {}
-    
+
     public async getForex(): Promise<AssetDto[]> {
         const result = await this.prismaService.assets.findMany({
             where: {
@@ -27,5 +27,4 @@ export class AssetsService {
             };
         });
     }
-
 }
