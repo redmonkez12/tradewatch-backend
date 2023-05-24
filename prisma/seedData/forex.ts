@@ -5,71 +5,71 @@ import { db } from "lib/db";
 
 const currencies = [
     {
-        ticker: "GBPUSD",
+        ticker: "GBP/USD",
         name: "British Pound / U.S. Dollar",
     },
     {
-        ticker: "GBPJPY",
+        ticker: "GBP/JPY",
         name: "British Pound / Japanese Yen",
     },
     {
-        ticker: "USDJPY",
+        ticker: "USD/JPY",
         name: "U.S. Dollar / Japanese Yen",
     },
     {
-        ticker: "EURUSD",
+        ticker: "EUR/USD",
         name: "Euro / U.S. Dollar",
     },
     {
-        ticker: "USDCAD",
+        ticker: "USD/CAD",
         name: "U.S. Dollar / Canadian Dollar",
     },
     {
-        ticker: "AUDUSD",
+        ticker: "AUD/USD",
         name: "Australian Dollar / U.S. Dollar",
     },
     {
-        ticker: "NZDUSD",
+        ticker: "NZD/USD",
         name: "New Zealand Dollar / U.S. Dollar",
     },
     {
-        ticker: "EURJPY",
+        ticker: "EUR/JPY",
         name: "Euro / Japanese Yen",
     },
     {
-        ticker: "EURGBP",
+        ticker: "EUR/GBP",
         name: "Euro / British Pound",
     },
     {
-        ticker: "GBPCHF",
+        ticker: "GBP/CHF",
         name: "British Pound / Swiss Franc",
     },
     {
-        ticker: "AUDJPY",
+        ticker: "AUD/JPY",
         name: "Australian Dollar / Japanese Yen",
     },
     {
-        ticker: "AUDCAD",
+        ticker: "AUD/CAD",
         name: "Australian Dollar / Canadian Dollar",
     },
     {
-        ticker: "AUDNZD",
+        ticker: "AUD/NZD",
         name: "Australian Dollar / New Zealand Dollar",
     },
     {
-        ticker: "NZDJPY",
+        ticker: "NZD/JPY",
         name: "New Zealand Dollar / Japanese Yen",
     },
     {
-        ticker: "NZDCHF",
+        ticker: "NZD/CHF",
         name: "New Zealand Dollar / Swiss Franc",
     },
     {
-        ticker: "NZDCAD",
+        ticker: "NZD/CAD",
         name: "New Zealand Dollar / Swiss Franc",
     },
     {
-        ticker: "EURCHF",
+        ticker: "EUR/CHF",
         name: "Euro / Swiss Franc",
     },
 ];
