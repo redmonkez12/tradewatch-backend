@@ -22,4 +22,16 @@ export class MarketsService {
             },
         });
     }
+
+    public async getById(id: string) {
+        const data = await this.prismaService.markets.findFirstOrThrow({
+            where: {
+                id,
+            },
+        });
+
+        console.log(data);
+
+        return data;
+    }
 }

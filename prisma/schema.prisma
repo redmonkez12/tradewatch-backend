@@ -15,18 +15,10 @@ enum Mode {
   LIGHT
 }
 
-enum Currency {
-  CZK
-  PLN
-  GBP
-  USD
-  EUR
-  AUD
-  CHF
-  JPY
-  NZD
-  CAD
-  BTC
+model Currencies {
+  id      String    @id @default(uuid())
+  name    String
+  Account Account[]
 }
 
 model Countries {
@@ -44,14 +36,15 @@ enum Market {
 }
 
 model Account {
-  id        String      @id @default(cuid())
-  userId    String
-  mode      Mode
-  currency  Currency
-  money     BigInt
-  default   Boolean
-  user      User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  Positions Positions[]
+  id         String      @id @default(cuid())
+  userId     String
+  mode       Mode
+  currencyId String
+  money      BigInt
+  default    Boolean
+  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  currency   Currencies  @relation(fields: [id], references: [id], onDelete: Cascade)
+  Positions  Positions[]
 }
 
 model Session {
