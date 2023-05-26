@@ -9,4 +9,12 @@ export class CountriesService {
     public get() {
         return this.prismaService.countries.findMany();
     }
+
+    public findOne(id: string) {
+        return this.prismaService.countries.findFirstOrThrow({
+            where: {
+                id,
+            },
+        });
+    }
 }

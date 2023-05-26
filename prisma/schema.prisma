@@ -22,9 +22,9 @@ model Currencies {
 }
 
 model Countries {
-  id     String   @id @default(uuid())
-  name   String
-  Assets Assets[]
+  id    String @id @default(uuid())
+  name  String
+  users User[]
 }
 
 enum Market {
@@ -44,7 +44,7 @@ model Account {
   default    Boolean
   user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   currency   Currencies  @relation(fields: [id], references: [id], onDelete: Cascade)
-  Positions  Positions[]
+  positions  Positions[]
 }
 
 model Session {
@@ -57,10 +57,16 @@ model Session {
 
 model User {
   id            String    @id @default(cuid())
-  name          String?
+  firstName     String
+  lastName      String
+  username      String
+  password      String
   email         String?   @unique
+  birthdate     DateTime
   emailVerified DateTime?
+  countryId     String
   image         String?
+  country       Countries @relation(fields: [countryId], references: [id], onDelete: Cascade)
   accounts      Account[]
   sessions      Session[]
 }
@@ -92,7 +98,6 @@ model Assets {
   marketId  String
   market    Markets     @relation(fields: [marketId], references: [id], onDelete: Cascade)
   countryId String?
-  country   Countries?  @relation(fields: [countryId], references: [id], onDelete: Cascade)
   pipFactor Int
   positions Positions[]
 }
@@ -100,5 +105,5 @@ model Assets {
 model Markets {
   id     String   @id @default(cuid())
   name   Market
-  Assets Assets[]
+  assets Assets[]
 }

@@ -8,5 +8,6 @@ import { CommonModule } from "src/common/common.module";
     imports: [CommonModule],
     controllers: [CountriesController],
     providers: [CountriesService],
+    exports: [CountriesService],
 })
 export class CountriesModule {}

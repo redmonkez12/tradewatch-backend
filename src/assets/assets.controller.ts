@@ -1,4 +1,4 @@
-import { Controller, Get } from "@nestjs/common";
+import { Controller, Get, Param } from "@nestjs/common";
 
 import { AssetsService } from "./assets.service";
 
@@ -7,10 +7,17 @@ export class AssetsController {
     constructor(private readonly assetService: AssetsService) {}
 
     @Get("/forex")
-    getForex() {
+    public async getForex() {
         return this.assetService.getForex();
     }
 
     @Get("/stocks")
-    getStocks() {}
+    public getStocks() {
+        return "Not implemented";
+    }
+
+    @Get("/:id")
+    public async getOne(@Param("id") id: string) {
+        return this.assetService.findOne(id);
+    }
 }

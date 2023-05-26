@@ -7,6 +7,17 @@ import { PrismaService } from "src/common/PrismaService";
 export class AssetsService {
     constructor(private prismaService: PrismaService) {}
 
+    public async findOne(id: string) {
+        return this.prismaService.assets.findFirstOrThrow({
+            where: {
+                id,
+            },
+            include: {
+                market: true,
+            },
+        });
+    }
+
     public async getForex(): Promise<AssetDto[]> {
         const result = await this.prismaService.assets.findMany({
             where: {
