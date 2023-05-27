@@ -16,6 +16,14 @@ export class UsersService {
         });
     }
 
+    async findById(id: string) {
+        return this.prismaService.user.findFirstOrThrow({
+            where: {
+                id,
+            },
+        });
+    }
+
     async create(user: CreateUserDto) {
         const salt = await bcrypt.genSalt(10);
         const hashPassword = await bcrypt.hash(user.password, salt);
