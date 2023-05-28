@@ -18,13 +18,25 @@ export class AssetsService {
         });
     }
 
-    public async getForex(): Promise<AssetDto[]> {
+    public async getForexCount() {
+        return this.prismaService.assets.count({
+            where: {
+                market: {
+                    name: Market.FOREX,
+                },
+            },
+        });
+    }
+
+    public async getForex(offset: number, limit: number): Promise<AssetDto[]> {
         const result = await this.prismaService.assets.findMany({
             where: {
                 market: {
                     name: Market.FOREX,
                 },
             },
+            skip: offset,
+            take: limit,
             orderBy: {
                 name: "asc",
             },

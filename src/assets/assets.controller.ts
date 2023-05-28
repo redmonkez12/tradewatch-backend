@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from "@nestjs/common";
+import { Controller, Get, Param, Query } from "@nestjs/common";
 
 import { AssetsService } from "./assets.service";
 
@@ -7,8 +7,19 @@ export class AssetsController {
     constructor(private readonly assetService: AssetsService) {}
 
     @Get("/forex")
-    public async getForex() {
-        return this.assetService.getForex();
+    public async getForex(
+        @Query("offset") offset: string,
+        @Query("limit") limit: string,
+    ) {
+        return this.assetService.getForex(
+            Number(offset) || 0,
+            Number(limit) || 10,
+        );
+    }
+
+    @Get("/forex/count")
+    public async getForexCount() {
+        return this.assetService.getForexCount();
     }
 
     @Get("/stocks")
